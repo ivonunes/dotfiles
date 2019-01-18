@@ -23,7 +23,9 @@ ln -s ~/.tmux/.tmux.conf ~/.tmux.conf
 
 # sublime
 mkdir -p ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User
-cp Preferences.sublime-settings ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/
+rm -rf ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/SolarizedDark
+cp *.sublime-* ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/
+cp -r SolarizedDark ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/SolarizedDark
 
-# add Solarized Dark to the OS X Terminal
+# add Solarized Dark to Terminal.app
 open Solarized\ Dark.terminal

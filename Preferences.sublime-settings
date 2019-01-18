@@ -1,7 +1,8 @@
 {
+  "color_scheme": "Packages/SolarizedDark.sublime-color-scheme",
   "font_face": "Hack",
-  "color_scheme": "Packages/Solarized Color Scheme/Solarized (dark).sublime-color-scheme",
-  "theme": "Soda SolarizedDark.sublime-theme",
+  "font_size": 14,
   "tab_size": 2,
-  "translate_tabs_to_spaces": true,
+  "theme": "SolarizedDark.sublime-theme",
+  "translate_tabs_to_spaces": true
 }
