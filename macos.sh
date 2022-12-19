@@ -9,10 +9,13 @@ chsh -s /bin/zsh
 cp .zshrc ~/.zshrc
 
 # amix vimrc
-git clone https://github.com/amix/vimrc.git ~/.vim_runtime
+git clone --depth=1 https://github.com/amix/vimrc.git ~/.vim_runtime
 sh ~/.vim_runtime/install_awesome_vimrc.sh
-cp my_configs.vim > ~/.vim_runtime/
+cp my_configs.vim ~/.vim_runtime/
 
-# add colour schemes to Terminal.app
-open 3024\ Day.terminal
-open 3024\ Night.terminal
+# tmux
+rm -rf ~/.tmux
+git clone https://github.com/gpakosz/.tmux.git ~/.tmux
+ln -s -f ~/.tmux/.tmux.conf ~
+cp .tmux.conf.local ~
+

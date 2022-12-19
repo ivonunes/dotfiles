@@ -1,1 +1,1 @@
-colorscheme pyte
+colorscheme ir_black
