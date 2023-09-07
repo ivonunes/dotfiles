@@ -98,3 +98,11 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+export PATH="/Users/ivonunes/.local/bin:$PATH"
+
+if [ "$(arch)" = "arm64" ]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+else
+    eval "$(/usr/local/bin/brew shellenv)"
+fi
