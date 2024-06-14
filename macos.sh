@@ -17,6 +17,7 @@ brew install appcleaner logi-options-plus 1password --cask
 
 # dev tools
 brew install iterm2 phpstorm docker font-jetbrains-mono --cask
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/serversideup/spin/main/tools/install.sh)"
 
 # games
 brew install xiv-on-mac steam --cask
