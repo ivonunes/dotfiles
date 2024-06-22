@@ -13,10 +13,10 @@ sh ~/.vim_runtime/install_awesome_vimrc.sh
 cp my_configs.vim ~/.vim_runtime/
 
 # basics
-brew install appcleaner logi-options-plus 1password --cask
+brew install appcleaner the-unarchiver logi-options-plus 1password --cask
 
 # dev tools
-brew install iterm2 phpstorm font-jetbrains-mono herd --cask
+brew install iterm2 phpstorm font-jetbrains-mono herd rapidapi --cask
 
 # games
 brew install xiv-on-mac steam --cask
