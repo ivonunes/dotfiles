@@ -5,6 +5,7 @@
 
 # oh-my-zsh
 sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k"
 cp .zshrc ~/.zshrc
 
 # amix vimrc
@@ -13,14 +14,13 @@ sh ~/.vim_runtime/install_awesome_vimrc.sh
 cp my_configs.vim ~/.vim_runtime/
 
 # basics
-brew install appcleaner the-unarchiver logi-options-plus 1password --cask
+brew install pearcleaner the-unarchiver logi-options-plus microblog replacicon --cask
 
 # dev tools
-brew install iterm2 phpstorm font-jetbrains-mono herd rapidapi --cask
+brew install iterm2 phpstorm font-hack herd rapidapi --cask
 
 # games
 brew install xiv-on-mac steam --cask
 
 # music production
-brew install izotope-product-portal --cask
-
+brew install izotope-product-portal native-access --cask
