@@ -17,10 +17,11 @@ cp my_configs.vim ~/.vim_runtime/
 brew install pearcleaner the-unarchiver logi-options-plus microblog replacicon --cask
 
 # dev tools
-brew install iterm2 phpstorm font-hack herd rapidapi --cask
+brew install node
+brew install iterm2 webstorm font-jetbrains-mono rapidapi --cask
 
 # games
-brew install xiv-on-mac steam --cask
+brew install xiv-on-mac steam crossover --cask
 
 # music production
 brew install izotope-product-portal native-access --cask
