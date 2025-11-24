@@ -13,8 +13,12 @@ git clone --depth=1 https://github.com/amix/vimrc.git ~/.vim_runtime
 sh ~/.vim_runtime/install_awesome_vimrc.sh
 cp my_configs.vim ~/.vim_runtime/
 
+# aerospace
+cp .aerospace.toml ~/.aerospace.toml
+
 # basics
-brew install pearcleaner the-unarchiver logi-options-plus microblog replacicon --cask
+brew install pearcleaner the-unarchiver logi-options-plus netnewswire replacicon --cask
+brew install --cask nikitabobko/tap/aerospace
 
 # dev tools
 brew install rbenv
@@ -24,4 +28,4 @@ brew install iterm2 rubymine font-jetbrains-mono rapidapi --cask
 brew install nvidia-geforce-now --cask
 
 # music production
-brew install izotope-product-portal native-access --cask
+brew install izotope-product-portal native-access ilok-license-manager --cask
