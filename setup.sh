@@ -8,21 +8,30 @@ sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/i
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k"
 cp .zshrc ~/.zshrc
 
-# amix vimrc
-git clone --depth=1 https://github.com/amix/vimrc.git ~/.vim_runtime
-sh ~/.vim_runtime/install_awesome_vimrc.sh
-cp my_configs.vim ~/.vim_runtime/
-
-# aerospace
-cp .aerospace.toml ~/.aerospace.toml
-
 # basics
 brew install pearcleaner the-unarchiver logi-options-plus netnewswire replacicon --cask
-brew install --cask nikitabobko/tap/aerospace
 
 # dev tools
-brew install rbenv
-brew install iterm2 rubymine font-jetbrains-mono rapidapi --cask
+brew install rbenv lazyvim lazygit ripgrep opencode tmux
+brew install ghostty font-jetbrains-mono-nerd-font --cask
+
+# lazyvim
+git clone https://github.com/LazyVim/starter ~/.config/nvim
+rm -rf ~/.config/nvim/.git
+cp nvim.lua ~/.config/nvim/lua/config/options.lua
+
+# opencode
+mkdir -p ~/.config/opencode
+cp opencode.json ~/.config/opencode/
+
+# tmux
+mkdir -p ~/.config/tmux
+cp tmux.conf ~/.config/tmux/
+cp tmux.conf.local ~/.config/tmux/
+
+# ghostty
+mkdir -p ~/Library/Application\ Support/com.mitchellh.ghostty
+cp ghostty.conf ~/Library/Application\ Support/com.mitchellh.ghostty/config
 
 # games
 brew install nvidia-geforce-now --cask
