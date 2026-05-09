@@ -1,0 +1,81 @@
+export EDITOR="nvim"
+export HOMEBREW_AUTO_UPDATE_SECS="86400"
+export BAT_THEME="ansi"
+
+export PATH="$HOME/.local/bin:$PATH"
+
+HISTFILE="$HOME/.zhistory"
+SAVEHIST=10000
+HISTSIZE=10000
+
+setopt share_history
+setopt hist_expire_dups_first
+setopt hist_ignore_dups
+setopt hist_verify
+
+alias vim="nvim"
+
+if command -v bat >/dev/null 2>&1; then
+  alias cat="bat --paging=never"
+fi
+
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+
+if [ ! -d "$ZINIT_HOME/.git" ] && command -v git >/dev/null 2>&1; then
+  mkdir -p "$(dirname "$ZINIT_HOME")"
+  git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+fi
+
+if [ -f "$ZINIT_HOME/zinit.zsh" ]; then
+  source "$ZINIT_HOME/zinit.zsh"
+
+  zinit snippet OMZL::git.zsh
+  zinit snippet OMZL::directories.zsh
+  zinit snippet OMZL::theme-and-appearance.zsh
+  zinit snippet OMZL::async_prompt.zsh
+
+  zstyle ':omz:plugins:eza' 'dirs-first' yes
+  zstyle ':omz:plugins:eza' 'git-status' yes
+  zstyle ':omz:plugins:eza' 'header' yes
+  zstyle ':omz:plugins:eza' 'icons' yes
+
+  zinit snippet OMZP::git
+  zinit snippet OMZP::brew
+  zinit snippet OMZP::direnv
+  zinit snippet OMZP::eza
+
+  zinit light zsh-users/zsh-syntax-highlighting
+  zinit light zsh-users/zsh-autosuggestions
+  zinit light Aloxaf/fzf-tab
+fi
+
+autoload -Uz compinit
+compinit
+
+if command -v starship >/dev/null 2>&1; then
+  eval "$(starship init zsh)"
+fi
+
+if command -v mise >/dev/null 2>&1; then
+  eval "$(mise activate zsh)"
+fi
+
+if command -v zoxide >/dev/null 2>&1; then
+  eval "$(zoxide init zsh)"
+fi
+
+if [ -f "$HOME/.fzf.zsh" ]; then
+  . "$HOME/.fzf.zsh"
+fi
+
+if [ -f "$HOME/.zshrc.local" ]; then
+  . "$HOME/.zshrc.local"
+fi
+
+if [ -f "$HOME/.atuin/bin/env" ]; then
+  . "$HOME/.atuin/bin/env"
+fi
+
+if command -v atuin >/dev/null 2>&1; then
+  eval "$(atuin init zsh)"
+fi

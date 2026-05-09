@@ -1,0 +1,6 @@
+.idea/
+.env
+*secrets.env
+*secrets.env.yml
+*.iml
+.DS_Store
