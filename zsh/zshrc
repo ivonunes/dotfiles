@@ -11,9 +11,26 @@ HISTSIZE=10000
 setopt share_history
 setopt hist_expire_dups_first
 setopt hist_ignore_dups
+setopt hist_ignore_space  # a command typed with a space in front stays out of history
 setopt hist_verify
 
 alias vim="nvim"
+
+# A coding agent's shell: no terminal on its output, or one that says who it is (Claude Code,
+# Codex, OpenCode, Pi). Agents get the environment and plain tools, and none of the
+# interactive layer below: the fancier stand-ins hang or take other options (eza's git column
+# on big repos and slow drives; bat for cat), and their commands stay out of your history.
+if [[ ! -t 1 || -n "$CLAUDECODE" || -n "$CODEX_SANDBOX" || -n "$OPENCODE" || -n "$AGENT" || -n "$PI_SESSION_ID" ]]; then
+  agent_shell=1
+fi
+
+if [ -f "$HOME/.zshrc.local" ]; then
+  . "$HOME/.zshrc.local"
+fi
+
+[[ -n "$agent_shell" ]] && return
+
+# The interactive layer, for your own terminals.
 
 if command -v bat >/dev/null 2>&1; then
   alias cat="bat --paging=never"
@@ -34,48 +51,44 @@ if [ -f "$ZINIT_HOME/zinit.zsh" ]; then
   zinit snippet OMZL::theme-and-appearance.zsh
   zinit snippet OMZL::async_prompt.zsh
 
+  zinit snippet OMZP::git
+  zinit snippet OMZP::brew
+  zinit snippet OMZP::direnv
+
   zstyle ':omz:plugins:eza' 'dirs-first' yes
   zstyle ':omz:plugins:eza' 'git-status' yes
   zstyle ':omz:plugins:eza' 'header' yes
   zstyle ':omz:plugins:eza' 'icons' yes
-
-  zinit snippet OMZP::git
-  zinit snippet OMZP::brew
-  zinit snippet OMZP::direnv
   zinit snippet OMZP::eza
-
-  zinit light zsh-users/zsh-syntax-highlighting
-  zinit light zsh-users/zsh-autosuggestions
-  zinit light Aloxaf/fzf-tab
 fi
 
 autoload -Uz compinit
 compinit
 
-if command -v starship >/dev/null 2>&1; then
-  eval "$(starship init zsh)"
+# fzf-tab after compinit, and before anything that wraps keyboard widgets.
+if [ -f "$ZINIT_HOME/zinit.zsh" ]; then
+  zinit light Aloxaf/fzf-tab
 fi
 
-if command -v mise >/dev/null 2>&1; then
-  eval "$(mise activate zsh)"
+if command -v starship >/dev/null 2>&1; then
+  eval "$(starship init zsh)"
 fi
 
 if command -v zoxide >/dev/null 2>&1; then
   eval "$(zoxide init zsh)"
 fi
 
-if [ -f "$HOME/.fzf.zsh" ]; then
-  . "$HOME/.fzf.zsh"
+if command -v fzf >/dev/null 2>&1; then
+  source <(fzf --zsh)
 fi
 
-if [ -f "$HOME/.zshrc.local" ]; then
-  . "$HOME/.zshrc.local"
-fi
-
-if [ -f "$HOME/.atuin/bin/env" ]; then
-  . "$HOME/.atuin/bin/env"
-fi
-
+# After fzf, so Ctrl-R is atuin's.
 if command -v atuin >/dev/null 2>&1; then
   eval "$(atuin init zsh)"
+fi
+
+# Last: they wrap every widget defined before them.
+if [ -f "$ZINIT_HOME/zinit.zsh" ]; then
+  zinit light zsh-users/zsh-autosuggestions
+  zinit light zsh-users/zsh-syntax-highlighting
 fi

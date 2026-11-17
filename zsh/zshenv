@@ -1,0 +1,6 @@
+# Each PATH entry once, however many times installers add it.
+typeset -U path PATH
+
+if [ -f "$HOME/.cargo/env" ]; then
+  . "$HOME/.cargo/env"
+fi

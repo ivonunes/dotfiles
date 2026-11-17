@@ -114,7 +114,7 @@ local function apply_catppuccin()
     PmenuSel = { fg = c.base, bg = c.blue },
     StatusLine = { fg = c.text, bg = c.mantle },
     StatusLineNC = { fg = c.overlay, bg = c.mantle },
-    VertSplit = { fg = c.surface, bg = "NONE" },
+    WinSeparator = { fg = c.surface, bg = "NONE" },
     EndOfBuffer = { fg = c.surface, bg = "NONE" },
   }
 
@@ -135,12 +135,9 @@ vim.keymap.set("n", "<leader>q", "<cmd>quit<CR>", { silent = true })
 vim.keymap.set("n", "<leader>x", "<cmd>x<CR>", { silent = true })
 
 vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { silent = true })
-vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { silent = true })
-vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { silent = true })
-
 vim.api.nvim_create_autocmd("TextYankPost", {
   callback = function()
-    vim.highlight.on_yank({ timeout = 150 })
+    vim.hl.on_yank({ timeout = 150 })
   end,
 })
 

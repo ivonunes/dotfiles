@@ -1,9 +1,6 @@
-cask "bruno"
-cask "docker-desktop"
+brew "go"
+
+cask "codex"
 cask "firefox"
-cask "claude-code"
 cask "keeper-password-manager"
-brew "anomalyco/tap/opencode"
-cask "opencode-desktop"
-cask "phpstorm"
 cask "tableplus"

@@ -17,26 +17,25 @@ if [ -f "brew/Brewfile.$PROFILE" ]; then
   brew bundle --file="brew/Brewfile.$PROFILE"
 fi
 
-mkdir -p "$HOME/.config"
-mkdir -p "$HOME/.config/nvim"
-mkdir -p "$HOME/.config/ghostty"
-mkdir -p "$HOME/.config/mise"
-mkdir -p "$HOME/.config/tmux"
-mkdir -p "$HOME/.local/bin"
+# Links a file into place, keeping anything that was there as <name>.backup.
+link() {
+  mkdir -p "$(dirname "$2")"
+  if [ -e "$2" ] && [ ! -L "$2" ]; then
+    mv "$2" "$2.backup"
+  fi
+  ln -sf "$1" "$2"
+}
 
-ln -sf "$DOTFILES_DIR/zsh/zshrc" "$HOME/.zshrc"
-ln -sf "$DOTFILES_DIR/git/gitconfig" "$HOME/.gitconfig"
-ln -sf "$DOTFILES_DIR/git/gitignore" "$HOME/.gitignore"
-ln -sf "$DOTFILES_DIR/npm/npmrc" "$HOME/.npmrc"
-ln -sf "$DOTFILES_DIR/nvim/init.lua" "$HOME/.config/nvim/init.lua"
-ln -sf "$DOTFILES_DIR/ghostty/config" "$HOME/.config/ghostty/config"
-ln -sf "$DOTFILES_DIR/mise/config.toml" "$HOME/.config/mise/config.toml"
-ln -sf "$DOTFILES_DIR/tmux/tmux.conf" "$HOME/.config/tmux/tmux.conf"
-ln -sf "$DOTFILES_DIR/bin/serve" "$HOME/.local/bin/serve"
-
-if command -v mise >/dev/null 2>&1; then
-  mise trust "$DOTFILES_DIR/mise/config.toml"
-fi
+link "$DOTFILES_DIR/zsh/zshenv" "$HOME/.zshenv"
+link "$DOTFILES_DIR/zsh/zshrc" "$HOME/.zshrc"
+link "$DOTFILES_DIR/git/gitconfig" "$HOME/.gitconfig"
+link "$DOTFILES_DIR/git/gitignore" "$HOME/.gitignore"
+link "$DOTFILES_DIR/npm/npmrc" "$HOME/.npmrc"
+link "$DOTFILES_DIR/nvim/init.lua" "$HOME/.config/nvim/init.lua"
+link "$DOTFILES_DIR/ghostty/config" "$HOME/.config/ghostty/config"
+link "$DOTFILES_DIR/tmux/tmux.conf" "$HOME/.config/tmux/tmux.conf"
+link "$DOTFILES_DIR/atuin/config.toml" "$HOME/.config/atuin/config.toml"
+link "$DOTFILES_DIR/bin/serve" "$HOME/.local/bin/serve"
 
 if [ ! -f "$HOME/.zshrc.local" ]; then
   : > "$HOME/.zshrc.local"

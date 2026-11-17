@@ -4,3 +4,5 @@
 *secrets.env.yml
 *.iml
 .DS_Store
+
+**/.claude/settings.local.json

@@ -1,9 +1,22 @@
-cask "chatgpt"
-cask "codex"
-cask "codex-app"
-cask "crossover"
+brew "mas"
+brew "nekolabstudio/tap/sumi", trusted: true
+
+cask "battle-net"
+cask "blender"
+cask "claude"
+cask "discord"
 cask "ilok-license-manager"
+cask "ivonunes/tap/wheelio", trusted: true
 cask "izotope-product-portal"
 cask "native-access"
-cask "netnewswire"
-cask "webstorm"
+cask "nekolabstudio/tap/purr", trusted: true
+cask "signal"
+cask "steam"
+
+mas "Final Cut Pro", id: 424389933
+mas "Inkstead", id: 6772740562
+mas "Logic Pro", id: 634148309
+mas "Parachute", id: 6748614170
+mas "Pixelmator Pro", id: 1289583905
+mas "Wipr", id: 1662217862
+mas "Xcode", id: 497799835
